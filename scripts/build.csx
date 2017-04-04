@@ -20,6 +20,8 @@ Console.WriteLine("cwd [build.csx]: {0}", Directory.GetCurrentDirectory());
 Directory.SetCurrentDirectory(rootDir);
 Console.WriteLine("cwd [build.csx]: {0}", Directory.GetCurrentDirectory());
 string commitMessage = Environment.GetEnvironmentVariable("APPVEYOR_REPO_COMMIT_MESSAGE");
+string commitMessageEx = Environment.GetEnvironmentVariable("APPVEYOR_REPO_COMMIT_MESSAGE_EXTENDED");
+if (!string.IsNullOrWhiteSpace(commitMessageEx)) { commitMessage += " " + commitMessageEx; }
 Console.WriteLine("commit message: \"{0}\"", commitMessage);
 
 string configuration = Environment.GetEnvironmentVariable("configuration");
