@@ -17,15 +17,16 @@ namespace Mapbox.Map
 	/// parameters.Id = new CanonicalTileId(_zoom, _tileCoorindateX, _tileCoordinateY);
 	/// parameters.MapId = "mapbox://styles/mapbox/satellite-v9";
 	/// var rasterTile = new RasterTile();
+	/// 
+	/// // Make the request.
 	/// rasterTile.Initialize(parameters, (Action)(() =>
 	/// {
 	/// 	if (string.IsNullOrEmpty(rasterTile.Error))
 	/// 	{
-	///			return;
+	///			// Handle the error.
 	///		}
-	///		var texture = new Texture2D(0, 0);
-	///		texture.LoadImage(rasterTile.Data);
-	///		_sampleMaterial.mainTexture = texture;
+	/// 
+	/// 	// Consume the <see cref="Data"/>.
 	///	}));
 	/// </code>
 	/// </example>
@@ -36,6 +37,13 @@ namespace Mapbox.Map
 
 		/// <summary> Gets the raster tile raw data. </summary>
 		/// <value> The raw data, usually an encoded JPEG or PNG. </value>
+		/// <example>What does this tag do?</example>
+		/// <code>
+		/// // Example usage in Unity
+		/// var texture = new Texture2D(0, 0);
+		/// texture.LoadImage(rasterTile.Data);
+		/// _sampleMaterial.mainTexture = texture;
+		/// </code>
 		public byte[] Data
 		{
 			get
