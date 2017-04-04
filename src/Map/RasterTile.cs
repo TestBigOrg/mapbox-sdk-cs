@@ -9,8 +9,9 @@ namespace Mapbox.Map
 	/// <summary>
 	/// A raster tile from the Mapbox Style API, an encoded image representing a geographic
 	/// bounding box. Usually JPEG or PNG encoded.
+	/// </summary>
 	/// <example>
-	/// How to use 'RasterTile':
+	/// Making a RasterTile request:
 	/// <code>
 	/// var parameters = new Tile.Parameters();
 	/// parameters.Fs = MapboxAccess.Instance;
@@ -30,20 +31,20 @@ namespace Mapbox.Map
 	///	}));
 	/// </code>
 	/// </example>
-	/// </summary>
 	public class RasterTile : Tile
 	{
 		private byte[] data;
 
 		/// <summary> Gets the raster tile raw data. </summary>
 		/// <value> The raw data, usually an encoded JPEG or PNG. </value>
-		/// <example>What does this tag do?</example>
+		/// <example> 
+		/// Consuming data in Unity to create a Texture2D:
 		/// <code>
-		/// // Example usage in Unity
 		/// var texture = new Texture2D(0, 0);
 		/// texture.LoadImage(rasterTile.Data);
 		/// _sampleMaterial.mainTexture = texture;
 		/// </code>
+		/// </example>
 		public byte[] Data
 		{
 			get
