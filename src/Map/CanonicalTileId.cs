@@ -11,7 +11,7 @@ namespace Mapbox.Map
 
 	/// <summary>
 	/// Canonical tile identifier in a slippy map.
-	/// <see href="http://www.maptiler.org/google-maps-coordinates-tile-bounds-projection/"> See tile IDs in action </see>
+	/// <see href="http://www.maptiler.org/google-maps-coordinates-tile-bounds-projection/"> See tile IDs in action. </see>
 	/// </summary>
 	public struct CanonicalTileId
 	{

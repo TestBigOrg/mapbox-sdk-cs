@@ -28,9 +28,9 @@ namespace Mapbox.Map
 	/// var vectorTile = new VectorTile();
 	/// 
 	/// // Make the request.
-	/// rasterTile.Initialize(parameters, (Action)(() =>
+	/// vectorTile.Initialize(parameters, (Action)(() =>
 	/// {
-	/// 	if (string.IsNullOrEmpty(rasterTile.Error))
+	/// 	if (string.IsNullOrEmpty(vectorTile.Error))
 	/// 	{
 	///			// Handle the error.
 	///		}
@@ -98,8 +98,8 @@ namespace Mapbox.Map
 		/// </summary>
 		/// <value> The GeoJson data. </value>
 		/// <example>
+		/// Inspect the GeoJson.
 		/// <code>
-		/// // Inspect the GeoJson.
 		/// var json = VectorTile.GeoJson;
 		/// Debug.Log("GeoJson: " + json);
 		/// </code>
@@ -118,8 +118,8 @@ namespace Mapbox.Map
 		/// </summary>
 		/// <returns>Collection of availble layers.</returns>
 		/// <example>
+		/// Inspect the LayerNames.
 		/// <code>
-		/// // Inspect the LayerNames.
 		/// var layerNames = vectorTile.LayerNames();
 		/// foreach (var layer in layerNames)
 		/// {
@@ -139,10 +139,10 @@ namespace Mapbox.Map
 		/// <param name="layerName">Name of the layer to decode.</param>
 		/// <returns>Decoded VectorTileLayer or 'null' if an invalid layer name was specified.</returns>
 		/// <example>
+		/// Inspect a layer of the vector tile.
 		/// <code>
-		/// // Inspect a layer of the vector tile.
 		/// var countryLabelLayer = vectorTile.GetLayer("country_label");
-		/// for (int i = 0; i<countryLabelLayer.Keys.Count; i++)
+		/// for (int i = 0; i < countryLabelLayer.Keys.Count; i++)
 		/// {
 		/// 	Debug.Log(string.Format("{0}:{1}", countryLabelLayer.Keys[i], countryLabelLayer.Values[i]));
 		/// }
