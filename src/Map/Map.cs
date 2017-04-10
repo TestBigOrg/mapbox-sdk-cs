@@ -74,7 +74,6 @@ namespace Mapbox.Map
 				}
 
 				this.tiles.Clear();
-				this.Update();
 			}
 		}
 
@@ -98,7 +97,6 @@ namespace Mapbox.Map
 
 			set {
 				this.latLngBounds = value;
-				this.Update();
 			}
 		}
 
@@ -111,7 +109,6 @@ namespace Mapbox.Map
 
 			set {
 				this.latLngBounds.Center = value;
-				this.Update();
 			}
 		}
 
@@ -124,13 +121,11 @@ namespace Mapbox.Map
 
 			set {
 				this.zoom = Math.Max(0, Math.Min(20, value));
-				this.Update();
 			}
 		}
 
 		/// <summary>
-		///     Sets the coordinates bounds and zoom at once. More efficient than
-		///     doing it in two steps because it only causes one map update.
+		///     Sets the coordinates bounds and zoom at once.
 		/// </summary>
 		/// <param name="bounds"> Coordinates bounds. </param>
 		/// <param name="zoom"> Zoom level. </param>
@@ -138,7 +133,6 @@ namespace Mapbox.Map
 		{
 			this.latLngBounds = bounds;
 			this.zoom = zoom;
-			this.Update();
 		}
 
 		/// <summary> Add an <see cref="T:IObserver" /> to the observer list. </summary>
@@ -165,7 +159,10 @@ namespace Mapbox.Map
 			}
 		}
 
-		private void Update()
+		/// <summary>
+		/// Request tiles after changing map properties.
+		/// </summary>
+		public void Update()
 		{
 			var cover = TileCover.Get(this.latLngBounds, this.zoom);
 

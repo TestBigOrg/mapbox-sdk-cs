@@ -22,7 +22,7 @@ namespace Mapbox.Map
 	/// // Make the request.
 	/// rasterTile.Initialize(parameters, (Action)(() =>
 	/// {
-	/// 	if (string.IsNullOrEmpty(rasterTile.Error))
+	/// 	if (!string.IsNullOrEmpty(rasterTile.Error))
 	/// 	{
 	///			// Handle the error.
 	///		}

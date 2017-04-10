@@ -30,7 +30,7 @@ namespace Mapbox.Map
 	/// // Make the request.
 	/// vectorTile.Initialize(parameters, (Action)(() =>
 	/// {
-	/// 	if (string.IsNullOrEmpty(vectorTile.Error))
+	/// 	if (!string.IsNullOrEmpty(vectorTile.Error))
 	/// 	{
 	///			// Handle the error.
 	///		}
