@@ -4,15 +4,13 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace Mapbox.Map {
-
-
+namespace Mapbox.Map
+{
 	using System.Collections.ObjectModel;
 	using Mapbox.Utils;
 	using Mapbox.VectorTile;
 	using Mapbox.VectorTile.ExtensionMethods;
 	using System;
-
 
 	/// <summary>
 	///    A decoded vector tile, as specified by the
@@ -20,9 +18,29 @@ namespace Mapbox.Map {
 	///    Mapbox Vector Tile specification </see>. The tile might be
 	///    incomplete if the network request and parsing are still pending.
 	/// </summary>
-	public sealed class VectorTile : Tile, IDisposable {
-
-
+	///  <example>
+	/// Making a VectorTile request:
+	/// <code>
+	/// var parameters = new Tile.Parameters();
+	/// parameters.Fs = MapboxAccess.Instance;
+	/// parameters.Id = new CanonicalTileId(_zoom, _tileCoorindateX, _tileCoordinateY);
+	/// parameters.MapId = "mapbox.mapbox-streets-v7";
+	/// var vectorTile = new VectorTile();
+	/// 
+	/// // Make the request.
+	/// rasterTile.Initialize(parameters, (Action)(() =>
+	/// {
+	/// 	if (string.IsNullOrEmpty(rasterTile.Error))
+	/// 	{
+	///			// Handle the error.
+	///		}
+	/// 
+	/// 	// Consume the <see cref="Data"/>.
+	///	}));
+	/// </code>
+	/// </example>
+	public sealed class VectorTile : Tile, IDisposable
+	{
 		// FIXME: Namespace here is very confusing and conflicts (sematically)
 		// with his class. Something has to be renamed here.
 		private Mapbox.VectorTile.VectorTile data;
@@ -31,8 +49,10 @@ namespace Mapbox.Map {
 
 		/// <summary> Gets the vector decoded using Mapbox.VectorTile library. </summary>
 		/// <value> The GeoJson data. </value>
-		public Mapbox.VectorTile.VectorTile Data {
-			get {
+		public Mapbox.VectorTile.VectorTile Data
+		{
+			get
+			{
 				return this.data;
 			}
 		}
@@ -46,18 +66,23 @@ namespace Mapbox.Map {
 		//}
 
 
-		public void Dispose() {
+		public void Dispose()
+		{
 			Dispose(true);
 			GC.SuppressFinalize(this);
 		}
 
 		//TODO: change signature if 'VectorTile' class changes from 'sealed'
 		//protected override void Dispose(bool disposeManagedResources)
-		public void Dispose(bool disposeManagedResources) {
-			if(!isDisposed) {
-				if(disposeManagedResources) {
+		public void Dispose(bool disposeManagedResources)
+		{
+			if (!isDisposed)
+			{
+				if (disposeManagedResources)
+				{
 					//TODO implement IDisposable with Mapbox.VectorTile.VectorTile
-					if(null != data) {
+					if (null != data)
+					{
 						data = null;
 					}
 				}
@@ -72,19 +97,38 @@ namespace Mapbox.Map {
 		/// </para>
 		/// </summary>
 		/// <value> The GeoJson data. </value>
-		public string GeoJson {
-			get {
+		/// <example>
+		/// <code>
+		/// // Inspect the GeoJson.
+		/// var json = VectorTile.GeoJson;
+		/// Debug.Log("GeoJson: " + json);
+		/// </code>
+		/// </example>
+		public string GeoJson
+		{
+			get
+			{
 				return this.data.ToGeoJson((ulong)Id.Z, (ulong)Id.X, (ulong)Id.Y, 0);
 			}
 		}
-
 
 
 		/// <summary>
 		/// Gets all availble layer names.
 		/// </summary>
 		/// <returns>Collection of availble layers.</returns>
-		public ReadOnlyCollection<string> LayerNames() {
+		/// <example>
+		/// <code>
+		/// // Inspect the LayerNames.
+		/// var layerNames = vectorTile.LayerNames();
+		/// foreach (var layer in layerNames)
+		/// {
+		/// 	Debug.Log("Layer: " + layer);
+		/// }
+		/// </code>
+		/// </example>
+		public ReadOnlyCollection<string> LayerNames()
+		{
 			return this.data.LayerNames();
 		}
 
@@ -94,24 +138,39 @@ namespace Mapbox.Map {
 		/// </summary>
 		/// <param name="layerName">Name of the layer to decode.</param>
 		/// <returns>Decoded VectorTileLayer or 'null' if an invalid layer name was specified.</returns>
-		public VectorTileLayer GetLayer(string layerName) {
+		/// <example>
+		/// <code>
+		/// // Inspect a layer of the vector tile.
+		/// var countryLabelLayer = vectorTile.GetLayer("country_label");
+		/// for (int i = 0; i<countryLabelLayer.Keys.Count; i++)
+		/// {
+		/// 	Debug.Log(string.Format("{0}:{1}", countryLabelLayer.Keys[i], countryLabelLayer.Values[i]));
+		/// }
+		/// </code>
+		/// </example>
+		public VectorTileLayer GetLayer(string layerName)
+		{
 			return this.data.GetLayer(layerName);
 		}
 
 
-		internal override TileResource MakeTileResource(string mapId) {
+		internal override TileResource MakeTileResource(string mapId)
+		{
 			return TileResource.MakeVector(Id, mapId);
 		}
 
 
-		internal override bool ParseTileData(byte[] data) {
-			try {
+		internal override bool ParseTileData(byte[] data)
+		{
+			try
+			{
 				var decompressed = Compression.Decompress(data);
 				this.data = new Mapbox.VectorTile.VectorTile(decompressed);
 
 				return true;
 			}
-			catch(Exception ex) {
+			catch (Exception ex)
+			{
 				SetError("VectorTile parsing failed: " + ex.ToString());
 				return false;
 			}
