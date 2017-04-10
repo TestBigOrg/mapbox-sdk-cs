@@ -31,15 +31,7 @@ namespace Mapbox.Map
 	///		parameters.MapId = "mapbox://styles/mapbox/outdoors-v10";
 	///		tile.Initialize(parameters, (Action)(() =>
 	///		{
-	///			var tileQuad = GameObject.CreatePrimitive(PrimitiveType.Quad);
-	/// 		tileQuad.transform.SetParent(transform);
-	///			tileQuad.name = tile.Id.ToString();
-	///			tileQuad.transform.position = new Vector3(tile.Id.X, -tile.Id.Y, 0);
-	/// 		var texture = new Texture2D(0, 0);
-	/// 		texture.LoadImage(tile.Data);
-	///			var material = new Material(Shader.Find("Unlit/Texture"));
-	/// 		material.mainTexture = texture;
-	///			tileQuad.GetComponent&lt;MeshRenderer&gt().sharedMaterial = material;
+	///			// Place tiles and load textures.
 	///		}));
 	///	}
 	/// </code>
