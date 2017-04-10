@@ -116,6 +116,26 @@ namespace Mapbox.Map
 		///     Cancels the request for the <see cref="T:Mapbox.Map.Tile"/> object.
 		///     It will stop a network request and set the tile's state to Canceled.
 		/// </summary>
+		/// <example>
+		/// <code>
+		/// // Do not request tiles that we are already requesting
+		///	// but at the same time exclude the ones we don't need
+		///	// anymore, cancelling the network request.
+		///	this.tiles.RemoveWhere((T tile) =>
+		///	{
+		///		if (cover.Remove(tile.Id))
+		///		{
+		///			return false;
+		///		}
+		///		else
+		///		{
+		///			tile.Cancel();
+		///			this.NotifyNext(tile);
+		///			return true;			
+		/// 	}
+		///	});
+		/// </code>
+		/// </example>
 		public void Cancel()
 		{
 			if (this.request != null)
@@ -157,6 +177,14 @@ namespace Mapbox.Map
 		/// <summary>
 		///    Parameters for initializing a Tile object.
 		/// </summary>
+		/// <example>
+		/// <code>
+		/// var parameters = new Tile.Parameters();
+		/// parameters.Fs = MapboxAccess.Instance;
+		/// parameters.Id = new CanonicalTileId(_zoom, _tileCoorindateX, _tileCoordinateY);
+		/// parameters.MapId = "mapbox.mapbox-streets-v7";
+		/// </code>
+		/// </example>
 		public struct Parameters
 		{
 			/// <summary> The tile id. </summary>

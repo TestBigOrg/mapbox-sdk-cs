@@ -132,7 +132,7 @@ namespace Mapbox.Map
 			return this.data.LayerNames();
 		}
 
-
+		// FIXME: Why don't these work?
 		/// <summary>
 		/// Decodes the requested layer.
 		/// </summary>
@@ -142,7 +142,8 @@ namespace Mapbox.Map
 		/// Inspect a layer of the vector tile.
 		/// <code>
 		/// var countryLabelLayer = vectorTile.GetLayer("country_label");
-		/// for (int i = 0; i < countryLabelLayer.Keys.Count; i++)
+		/// var count = countryLabelLayer.Keys.Count;
+		/// for (int i = 0; i &lt; count; i++)
 		/// {
 		/// 	Debug.Log(string.Format("{0}:{1}", countryLabelLayer.Keys[i], countryLabelLayer.Values[i]));
 		/// }
