@@ -15,7 +15,7 @@ namespace Mapbox.Map
 	/// <summary>
 	///    A decoded vector tile, as specified by the
 	///    <see href="https://www.mapbox.com/vector-tiles/specification/">
-	///    Mapbox Vector Tile specification </see>. The tile might be
+	///    Mapbox Vector Tile specification</see>. The tile might be
 	///    incomplete if the network request and parsing are still pending.
 	/// </summary>
 	///  <example>
@@ -115,6 +115,7 @@ namespace Mapbox.Map
 
 		/// <summary>
 		/// Gets all availble layer names.
+		/// See available layers and features <see href="https://www.mapbox.com/vector-tiles/mapbox-streets-v7/">here</see>.
 		/// </summary>
 		/// <returns>Collection of availble layers.</returns>
 		/// <example>

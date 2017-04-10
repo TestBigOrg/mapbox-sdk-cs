@@ -22,7 +22,7 @@ namespace Mapbox.Map
 	/// <example>
 	/// Request a map of the whole world:
 	/// <code>
-	/// var map = new Map<RasterTile>(MapboxAccess.Instance);
+	/// var map = new Map&lt;RasterTile&gt;(MapboxAccess.Instance);
 	/// map.Zoom = 2
 	/// map.Vector2dBounds = Vector2dBounds.World();
 	/// map.MapId = "mapbox://styles/mapbox/streets-v10
